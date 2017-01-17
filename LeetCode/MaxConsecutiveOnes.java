@@ -4,37 +4,30 @@ public class MaxConsecutiveOnes {
 	public static void main(String[] args)
 	{
 		int[] testArray = {1,1,0,1,1,1};
+		
 		System.out.println(findMaxConsecutiveOnes(testArray));
 	}
 	
 	public static int findMaxConsecutiveOnes(int[] nums) 
 	{
-        
-		int maxNums = 0;
-		int currentStreak = 0;
+		
+		int max = 0;
+		int streak = 0;
 		
 		for(int i = 0; i < nums.length; i++)
 		{
-			if(nums[i] == 1) 
+			streak++;
+			
+			if(streak + nums[i] == streak)
 			{
-				currentStreak++;
+				streak = 0;
 			}
-			else
-			{
-				if(currentStreak > maxNums)
-				{
-					maxNums = currentStreak;
-				}
-				
-				currentStreak = 0;
-			}
+			
+			max = streak > max ? streak : max;
+			
 		}
 		
-		if(currentStreak > maxNums)
-		{
-			maxNums = currentStreak;
-		}
-		return maxNums;
+		return max;
 		
     }
 	
